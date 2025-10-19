@@ -33,7 +33,6 @@ function App() {
     setPackingList(newPackingList);
   };
 
-  console.log(`packingList: ${JSON.stringify(packingList)}`);
   return (
     <div className="app">
       <h1>🏝️ Packing List 🧳</h1>
@@ -44,7 +43,7 @@ function App() {
         isPacked={isPacked}
         onUpdateItemStatus={onUpdateItemStatus}
       />
-      <Stats />
+      <Stats packingList={packingList} />
     </div>
   );
 }
