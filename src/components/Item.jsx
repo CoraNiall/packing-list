@@ -1,16 +1,20 @@
-import React, { useState } from 'react';
+import React from 'react';
 import '../index.css';
 
-export default function Item({ num, item, onDeleteItem }) {
-  const [isPacked, setIsPacked] = useState(false);
-
+export default function Item({
+  num,
+  item,
+  onDeleteItem,
+  isPacked,
+  onUpdateItemStatus,
+}) {
   const handleClick = e => {
     e.preventDefault();
     onDeleteItem(e, item);
   };
 
   const handleChange = e => {
-    setIsPacked(!isPacked);
+    onUpdateItemStatus(e, item);
   };
 
   return (
@@ -21,7 +25,7 @@ export default function Item({ num, item, onDeleteItem }) {
           id="packedStatus"
           name="packed"
           value={isPacked}
-          onChange={e => handleChange(e.target.value)}
+          onChange={e => handleChange(e.target.value, item)}
         />
         <span>
           {num} x {item}

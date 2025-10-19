@@ -6,9 +6,10 @@ import Stats from './components/Stats';
 
 function App() {
   const [packingList, setPackingList] = useState([]);
+  const [isPacked, setIsPacked] = useState(false);
 
   const onAddItem = (item, num) => {
-    setPackingList([...packingList, { item, num }]);
+    setPackingList([...packingList, { item, num, isPacked: false }]);
   };
 
   const onDeleteItem = (e, item) => {
@@ -18,12 +19,31 @@ function App() {
     );
   };
 
+  const onUpdateItemStatus = (e, item) => {
+    const newPackingList = packingList.map(packingListItem => {
+      if (packingListItem.item === item) {
+        return {
+          ...packingListItem,
+          isPacked: !packingListItem.isPacked,
+        };
+      } else {
+        return packingListItem;
+      }
+    });
+    setPackingList(newPackingList);
+  };
+
   console.log(`packingList: ${JSON.stringify(packingList)}`);
   return (
     <div className="app">
       <h1>🏝️ Packing List 🧳</h1>
       <Form onAddItem={onAddItem} />
-      <PackingList packingList={packingList} onDeleteItem={onDeleteItem} />
+      <PackingList
+        packingList={packingList}
+        onDeleteItem={onDeleteItem}
+        isPacked={isPacked}
+        onUpdateItemStatus={onUpdateItemStatus}
+      />
       <Stats />
     </div>
   );
