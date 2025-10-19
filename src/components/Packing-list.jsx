@@ -6,7 +6,8 @@ export default function PackingList({
   packingList,
   onDeleteItem,
   isPacked,
-  onUpdateItemStatus,
+  onUpdateItem,
+  setIsPacked,
 }) {
   if (packingList.length === 0)
     return <div className="list">Your packing list is empty</div>;
@@ -21,7 +22,8 @@ export default function PackingList({
             num={num}
             onDeleteItem={onDeleteItem}
             isPacked={isPacked}
-            onUpdateItemStatus={onUpdateItemStatus}
+            onUpdateItem={onUpdateItem}
+            setIsPacked={setIsPacked}
           />
         ))}
       </ul>

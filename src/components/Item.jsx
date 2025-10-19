@@ -6,7 +6,8 @@ export default function Item({
   item,
   onDeleteItem,
   isPacked,
-  onUpdateItemStatus,
+  setIsPacked,
+  onUpdateItem,
 }) {
   const handleClick = e => {
     e.preventDefault();
@@ -14,7 +15,8 @@ export default function Item({
   };
 
   const handleChange = e => {
-    onUpdateItemStatus(e, item);
+    setIsPacked(!isPacked);
+    onUpdateItem(e, item);
   };
 
   return (

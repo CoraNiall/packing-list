@@ -19,7 +19,7 @@ function App() {
     );
   };
 
-  const onUpdateItemStatus = (e, item) => {
+  const onUpdateItem = (e, item) => {
     const newPackingList = packingList.map(packingListItem => {
       if (packingListItem.item === item) {
         return {
@@ -41,7 +41,8 @@ function App() {
         packingList={packingList}
         onDeleteItem={onDeleteItem}
         isPacked={isPacked}
-        onUpdateItemStatus={onUpdateItemStatus}
+        onUpdateItem={onUpdateItem}
+        setIsPacked={setIsPacked}
       />
       <Stats packingList={packingList} />
     </div>
