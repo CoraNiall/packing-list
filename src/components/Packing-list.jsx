@@ -2,13 +2,16 @@ import React from 'react';
 
 import Item from './Item';
 
-export default function PackingList() {
+export default function PackingList({ packingList, onDeleteItem }) {
+  if (packingList.length === 0)
+    return <div className="list">Your packing list is empty</div>;
+
   return (
     <div className="list">
       <ul>
-        <Item name="passport" />
-        <Item name="toothbrush" />
-        <Item name="flight ticket" />
+        {packingList.map(({ item, num }, index) => (
+          <Item key={index} item={item} num={num} onDeleteItem={onDeleteItem} />
+        ))}
       </ul>
     </div>
   );

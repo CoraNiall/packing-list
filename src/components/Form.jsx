@@ -1,20 +1,38 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-export default function Form() {
+export default function Form({ onAddItem }) {
+  const [item, setItem] = useState('');
+  const [num, setNum] = useState('');
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    onAddItem(item, num);
+    setItem('');
+    setNum('');
+  };
+
   return (
-    <form className="add-form">
-      <label for="quantity">How many items?</label>
+    <form action="submit" className="add-form" onSubmit={handleSubmit}>
+      <label htmlFor="quantity">How many items?</label>
       <input
         type="number"
         id="quantity"
         name="quantity"
         min="0"
         max="100"
-        value="1"
+        value={num}
+        onChange={e => setNum(e.target.value)}
       />
-      <label for="item">Item name:</label>
-      <input type="text" id="item" name="item" placeholder="Enter item..." />
-      <button id="add-btn" onClick="">
+      <label htmlFor="item">Item name:</label>
+      <input
+        type="text"
+        id="item"
+        name="item"
+        placeholder="Item..."
+        value={item}
+        onChange={e => setItem(e.target.value)}
+      />
+      <button id="add-btn" type="submit">
         Add item
       </button>
     </form>
